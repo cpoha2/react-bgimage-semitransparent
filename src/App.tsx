@@ -35,10 +35,10 @@ function App() {
         <Grid item xs={12}>
           <SearchStuff />
         </Grid>
-        <Grid xs={12}>
+        <Grid item xs={12}>
           <MyInfo/>
         </Grid>
-        <Grid xs={12}>
+        <Grid item xs={12}>
         <Paper className={classes.paperHeaderFooter}>FOOTER</Paper>
         </Grid>
       </Grid>
