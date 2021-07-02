@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import './App.css';
-import {Grid, Paper} from '@material-ui/core';
+import { Grid, Paper } from '@material-ui/core';
 import MyInfo from './components/MyInfo';
 import SearchStuff from './components/SearchStuff';
 
@@ -36,10 +36,10 @@ function App() {
           <SearchStuff />
         </Grid>
         <Grid item xs={12}>
-          <MyInfo/>
+          <MyInfo />
         </Grid>
         <Grid item xs={12}>
-        <Paper className={classes.paperHeaderFooter}>FOOTER</Paper>
+          <Paper className={classes.paperHeaderFooter}>FOOTER</Paper>
         </Grid>
       </Grid>
     </div>
