@@ -65,7 +65,7 @@ const SearchStuff = (props : any) => {
                     showDivider={true} 
                     moreText='Show More Grid Records' 
                     lessText='Show Less Grid Records' 
-                    isExpanded={true} 
+                    isExpanded={false} 
                     rowsOfData={gridRows}/>   
               </Grid>
 
