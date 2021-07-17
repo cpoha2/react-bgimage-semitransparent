@@ -2,7 +2,7 @@ import React, {Fragment, SyntheticEvent, useEffect, useState} from 'react';
 import {Divider, Button} from '@material-ui/core';
 
 const ShowMoreGridRows = (props :any) => {
-    const {defaultNumRowsVisible, rowsOfData, moreText, lessText, isExpanded} = props;
+    const {defaultNumRowsVisible, showButton, rowsOfData, moreText, lessText, isExpanded} = props;
    
     const [displayAll, setDisplayAll] = useState(isExpanded);
     const [buttonText, setButtonText] = useState(moreText);
@@ -42,8 +42,6 @@ const ShowMoreGridRows = (props :any) => {
         } else {
             setButtonText(moreText);
         }
-        //getAlwaysVisibleRecords();
-        //getHiddenRecords();
         setDisplayAll (!displayAll);
         
     }
@@ -62,9 +60,12 @@ const ShowMoreGridRows = (props :any) => {
     //        setButtonText(moreText);
       if (isExpanded) {
         setButtonText(lessText);
+        setDisplayAll(true);
       } else {
         setButtonText(moreText);
+        setDisplayAll(false);
       }
+      
       
       console.log('use effect called');
     }, [isExpanded, lessText, moreText]);
@@ -75,7 +76,7 @@ const ShowMoreGridRows = (props :any) => {
         {(displayAll ) &&  getHiddenRecords()} 
         
         
-        {getButtonSection() }
+        {showButton && getButtonSection() }
 
         
 
