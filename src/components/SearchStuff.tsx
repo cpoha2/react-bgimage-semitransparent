@@ -1,6 +1,7 @@
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Divider from '@material-ui/core/Divider';
 import Image from '../assets/pf_bg4.jpg';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import GridRowData from '../formatters/GridRowData';
@@ -62,14 +63,15 @@ const SearchStuff = (props : any) => {
               <Grid container direction='row' >
                 <ShowMoreGridRows 
                     defaultNumRowsVisible={4} 
-                    showDivider={true} 
+                     
                     moreText='Show More Grid Records' 
                     lessText='Show Less Grid Records' 
                     isExpanded={false} 
                     rowsOfData={gridRows}/>   
               </Grid>
 
-             
+              <Divider style={{width: '100%', height: '3px', backgroundColor: 'blue'}}/>
+              <br/>
             </Paper>
         </Paper>
         <br/>
