@@ -103,7 +103,7 @@ const MyInfo = (props: any) => {
     <Paper className={classes.paper}>
       <h1>Grid using global state</h1>
       <Paper className={classes.paperTop} >
-      <div>Adjust how many rows to display:</div>  
+      <div>Adjust max rows display on init:</div>  
       <Slider
               defaultValue={maxRowsToShow}
               min={1}
