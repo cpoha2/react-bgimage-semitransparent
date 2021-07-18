@@ -91,8 +91,6 @@ const SearchStuff = (props : any) => {
               <Grid container direction='row' >
                 <ShowMoreGridRows 
                     defaultNumRowsVisible={maxRowsVisible}                     
-                    moreText='Show More Grid Records' 
-                    lessText='Show Less Grid Records' 
                     isExpanded={isGridExpanded} 
                     rowsOfData={gridRows}/>   
               </Grid>

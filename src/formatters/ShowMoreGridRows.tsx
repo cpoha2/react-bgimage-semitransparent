@@ -67,7 +67,7 @@ const ShowMoreGridRows = (props :any) => {
       }
       
       
-      console.log('use effect called');
+      console.log('ShowMoreGridRows: use effect called');
     }, [isExpanded, lessText, moreText]);
 
     return <Fragment>

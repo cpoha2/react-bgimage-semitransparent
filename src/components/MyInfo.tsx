@@ -1,9 +1,13 @@
-import React, { SyntheticEvent, useState } from 'react';
-import { Paper, Button, Box, Grid } from '@material-ui/core';
+import React, { Fragment, SyntheticEvent, useState, useEffect } from 'react';
+import { Divider, Paper, Button, Box, Grid } from '@material-ui/core';
 import Image from '../assets/myinfo_bg5.png';
 
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { useAppStore } from '../store/AppStore';
 
+import MyInfoChildOne from './MyInfoChildOne';
+
+import MyInfoChildTwo from './MyInfoChildTwo';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -53,31 +57,66 @@ const MyInfo = (props: any) => {
   const [content, setContent] = useState(<p>This is content</p>);
   const [count, setCount] = useState(0);
 
+  const showMoreText = 'Show More From Global';
+  const showLessText = 'Show Less From Global';
+  const [buttonText, setButtonText] = useState(showMoreText);
+  const [globalState] = useAppStore(); 
+
+  const [isShowMoreExpanded, setIsShowMoreExpanded] = useState(false);
+  const maxRowsToShow = 6;
+
   const handleClickAdd = (event: SyntheticEvent) => {
     event.preventDefault();
     console.log('you clicked');
-  
     setCount((prevCount) => prevCount + 1 );
-
     setContent((prevState) => <>{prevState}<br/> You added a line</>);
   };
 
+  const handleClickShowMore = (event: SyntheticEvent) => {
+    event.preventDefault();
+    console.log('you clicked Show More/Less');
+    if (buttonText === showMoreText) {
+      setButtonText(showLessText);
+      setIsShowMoreExpanded(true);
+    } else {
+      setButtonText(showMoreText);
+      setIsShowMoreExpanded(false);
+    }
+  };
+
+  const getButtonSection = () => {
+    if (globalState.displayButtonChildOneExceeds || globalState.displayButtonChildTwoExceeds) {
+      return <Fragment>
+        <Divider style={{width: '100%', height: '3px', backgroundColor: 'purple'}}/>
+        <Button onClick={handleClickShowMore}>{buttonText}</Button>
+      </Fragment>;
+    }
+  }
+
+  useEffect(() => { 
+      console.log('MyInfo: use effect called');
+
+  }, []);
+
+
   return <div className={classes.behindPaper}>
     <Paper className={classes.paper}>
-      <h1>MY INFO</h1>
-
-      <p>My Info content goes here...</p>
-
-      <Paper square className={classes.paperTop}>
-        <h2>Second paper on top</h2>
-        <p>Content of second paper</p>
-        <br />
-        <Button variant="outlined" className={classes.buttonSharpEdge}>ADD INFORMATION</Button>
-        <br />
-
+      <h1>MY INFO PARENT CLASS</h1>
+      <Paper className={classes.paperTop} >
+        <Grid container direction='row' >
+          <Grid item xs={6} md={6}>
+            <MyInfoChildOne maxRowsToShow={maxRowsToShow}  isDisplayAllGridRows={isShowMoreExpanded} />
+  
+          </Grid>
+          <Grid item xs={6} md={6}>
+            <MyInfoChildTwo maxRowsToShow={maxRowsToShow}  isDisplayAllGridRows={isShowMoreExpanded} />
+          </Grid>
+        </Grid>
+        {getButtonSection()}
       </Paper>
-      <p>This is content near the bottom to push the app down the page.</p>
-      <br />
+      
+      <br/>
+
       <Paper square className={classes.paperTop2}>
         <h2>Different rgba value for top paper</h2>
         {content}<br/>
