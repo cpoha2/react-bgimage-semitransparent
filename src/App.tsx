@@ -28,8 +28,8 @@ function App() {
 
 
   return (
-    <div className="App">
-      <AppStore>
+    <AppStore>
+      <div className="App">
         <Grid container spacing={0}>
           <Grid item xs={12}>
             <Paper className={classes.paperHeaderFooter}>HEADER</Paper>
@@ -44,8 +44,9 @@ function App() {
             <Paper className={classes.paperHeaderFooter}>FOOTER</Paper>
           </Grid>
         </Grid>
-      </AppStore>
-    </div>
+      </div>
+    </AppStore>
+    
   );
 }
 

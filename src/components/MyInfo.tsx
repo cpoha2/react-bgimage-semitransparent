@@ -1,5 +1,5 @@
 import React, { Fragment, SyntheticEvent, useState, useEffect } from 'react';
-import { Divider, Paper, Button, Grid } from '@material-ui/core';
+import { Divider, Paper, Button, Grid, Slider } from '@material-ui/core';
 import Image from '../assets/myinfo_bg5.png';
 
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
@@ -61,7 +61,7 @@ const MyInfo = (props: any) => {
   const [globalState] = useAppStore(); 
 
   const [showAll, setShowAll] = useState(false);
-  const maxRowsToShow = 6;
+  const [maxRowsToShow, setMaxRowsToShow] = useState(6);
 
   
   const handleClickShowMore = (event: SyntheticEvent) => {
@@ -76,12 +76,16 @@ const MyInfo = (props: any) => {
     }
   };
 
+  const handleSliderChange = (event: any, newValue: number | number[]) => {
+    setMaxRowsToShow(newValue as number);
+  };
+
   const getButtonSection = () => {
     if (globalState.displayButtonChildOneExceeds || globalState.displayButtonChildTwoExceeds) {
       return <Fragment>
         <Divider style={{width: '100%', borderBottom: "4px dashed rgba(255,0,255,0.7)" }}/>
         <Grid container direction='row'>
-          <Grid item xs={8} />
+          <Grid item xs={8} /> 
           <Grid item xs={4} ><Button onClick={handleClickShowMore}>{buttonText}</Button></Grid>
         </Grid>
         
@@ -99,6 +103,15 @@ const MyInfo = (props: any) => {
     <Paper className={classes.paper}>
       <h1>Grid using global state</h1>
       <Paper className={classes.paperTop} >
+      <div>Adjust how many rows to display:</div>  
+      <Slider
+              defaultValue={maxRowsToShow}
+              min={1}
+              max={10}
+              valueLabelDisplay="auto"
+              onChange={handleSliderChange}
+              style={{width:'30%'}}
+          />
         <Grid container direction='row' >
           <Grid item xs={6} md={6}>
             <MyInfoChildOne maxRowsToShow={maxRowsToShow}  displayAllRows={showAll} />
