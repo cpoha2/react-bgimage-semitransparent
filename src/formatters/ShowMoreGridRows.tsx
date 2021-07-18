@@ -56,8 +56,6 @@ const ShowMoreGridRows = (props :any) => {
     }
 
     useEffect(() => {
-    //    if (moreText && doSplitData() )
-    //        setButtonText(moreText);
       if (isExpanded) {
         setButtonText(lessText);
         setDisplayAll(true);
@@ -66,21 +64,13 @@ const ShowMoreGridRows = (props :any) => {
         setDisplayAll(false);
       }
       
-      
       console.log('ShowMoreGridRows: use effect called');
     }, [isExpanded, lessText, moreText]);
 
     return <Fragment>
         {getAlwaysVisibleRecords()}
-
-        {(displayAll ) &&  getHiddenRecords()} 
-        
-        
-        {showButton && getButtonSection() }
-
-        
-
-
+        {displayAll && getHiddenRecords()} 
+        {showButton && getButtonSection()}
     </Fragment>;
 }
 

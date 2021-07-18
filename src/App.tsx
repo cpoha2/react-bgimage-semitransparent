@@ -30,20 +30,20 @@ function App() {
   return (
     <div className="App">
       <AppStore>
-      <Grid container spacing={0}>
-        <Grid item xs={12}>
-          <Paper className={classes.paperHeaderFooter}>HEADER</Paper>
+        <Grid container spacing={0}>
+          <Grid item xs={12}>
+            <Paper className={classes.paperHeaderFooter}>HEADER</Paper>
+          </Grid>
+          <Grid item xs={12}>
+            <SearchStuff />
+          </Grid>
+          <Grid item xs={12}>
+            <MyInfo />
+          </Grid>
+          <Grid item xs={12}>
+            <Paper className={classes.paperHeaderFooter}>FOOTER</Paper>
+          </Grid>
         </Grid>
-        <Grid item xs={12}>
-          <SearchStuff />
-        </Grid>
-        <Grid item xs={12}>
-          <MyInfo />
-        </Grid>
-        <Grid item xs={12}>
-          <Paper className={classes.paperHeaderFooter}>FOOTER</Paper>
-        </Grid>
-      </Grid>
       </AppStore>
     </div>
   );

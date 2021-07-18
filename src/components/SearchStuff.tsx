@@ -50,8 +50,8 @@ const SearchStuff = (props : any) => {
 
     const classes = useStyles();
     const maxRowsVisible: number = 4;
-    const showMoreText = 'Show More Grid Rows From Parent';
-    const showLessText = 'Show Less Grid Rows From Parent';
+    const showMoreText = 'Show More - Component';
+    const showLessText = 'Show Less - Component';
     const [buttonText, setButtonText] = useState(showMoreText);
     const [isGridExpanded, setIsGridExpanded] = useState(false);
 
@@ -85,7 +85,7 @@ const SearchStuff = (props : any) => {
     
     return <div className={classes.behindPaper}>
         <Paper className={classes.paper}>
-            <h1>GRID EXAMPLE</h1>
+            <h1>Grid where data and button are in same component</h1>
            
             <Paper className={classes.paperTop}>
               <Grid container direction='row' >

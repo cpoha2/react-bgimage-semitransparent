@@ -55,25 +55,24 @@ const MyInfo = (props: any) => {
 
   const classes = useStyles();
   
-  const showMoreText = 'Show More From Global';
-  const showLessText = 'Show Less From Global';
+  const showMoreText = 'Show More Global';
+  const showLessText = 'Show Less Global';
   const [buttonText, setButtonText] = useState(showMoreText);
   const [globalState] = useAppStore(); 
 
-  const [isShowMoreExpanded, setIsShowMoreExpanded] = useState(false);
+  const [showAll, setShowAll] = useState(false);
   const maxRowsToShow = 6;
 
   
-
   const handleClickShowMore = (event: SyntheticEvent) => {
     event.preventDefault();
     console.log('you clicked Show More/Less');
     if (buttonText === showMoreText) {
       setButtonText(showLessText);
-      setIsShowMoreExpanded(true);
+      setShowAll(true);
     } else {
       setButtonText(showMoreText);
-      setIsShowMoreExpanded(false);
+      setShowAll(false);
     }
   };
 
@@ -94,15 +93,14 @@ const MyInfo = (props: any) => {
 
   return <div className={classes.behindPaper}>
     <Paper className={classes.paper}>
-      <h1>MY INFO PARENT CLASS</h1>
+      <h1>Grid using global state</h1>
       <Paper className={classes.paperTop} >
         <Grid container direction='row' >
           <Grid item xs={6} md={6}>
-            <MyInfoChildOne maxRowsToShow={maxRowsToShow}  isDisplayAllGridRows={isShowMoreExpanded} />
-  
+            <MyInfoChildOne maxRowsToShow={maxRowsToShow}  isDisplayAllGridRows={showAll} />
           </Grid>
           <Grid item xs={6} md={6}>
-            <MyInfoChildTwo maxRowsToShow={maxRowsToShow}  isDisplayAllGridRows={isShowMoreExpanded} />
+            <MyInfoChildTwo maxRowsToShow={maxRowsToShow}  isDisplayAllGridRows={showAll} />
           </Grid>
         </Grid>
         {getButtonSection()}
