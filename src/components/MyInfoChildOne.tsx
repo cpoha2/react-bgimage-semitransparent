@@ -50,7 +50,7 @@ const MyInfoChildOne = (props: any) => {
 
     return <div>
         <h2>CHILD ONE GRID:</h2>
-        <Grid container direction='row' alignItems='flex-start' justify='flex-start'>
+        <Grid container direction='row' alignItems='flex-start' justifyContent='flex-start'>
           <ShowMoreGridRows 
                 defaultNumRowsVisible={maxRowsToShow}                     
                 isExpanded={isDisplayAllGridRows} 

@@ -73,7 +73,7 @@ const StyleTesterComponent = (props: any) => {
 
     </Paper>
     <Paper className={classes.paperTop}>
-        <Grid container direction="row" justify="flex-start" alignItems="flex-start">
+        <Grid container direction="row" justifyContent="flex-start" alignItems="flex-start">
         <Grid item xs={6}>
             <Box component="span" className={classes.fontLarge}>Personal Information&nbsp;</Box>
             <Box component="span" className={classes.fontMedium}>(Your name, etc)</Box>
