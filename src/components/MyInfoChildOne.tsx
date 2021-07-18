@@ -24,7 +24,7 @@ const MyInfoChildOne = (props: any) => {
     const newGrid2 = <GridRowData key='9' label='Other' data='Verifying alignment of these longer text rows'/>
     const newGrid3 = <GridRowData key='10' label='My New Grid Item' data='Third additional row'/>
     myGrids = [...myGrids, newGrid, newGrid2, newGrid3];
-    const {maxRowsToShow, isDisplayAllGridRows} = props;
+    const {maxRowsToShow, displayAllRows} = props;
 
     const [, dispatch] = useAppStore(); 
 
@@ -53,7 +53,7 @@ const MyInfoChildOne = (props: any) => {
         <Grid container direction='row' alignItems='flex-start' justifyContent='flex-start'>
           <ShowMoreGridRows 
                 defaultNumRowsVisible={maxRowsToShow}                     
-                isExpanded={isDisplayAllGridRows} 
+                isExpanded={displayAllRows} 
                 rowsOfData={myGrids}/> 
         </Grid>
 

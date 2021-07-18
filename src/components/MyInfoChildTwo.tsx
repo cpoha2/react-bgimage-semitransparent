@@ -22,7 +22,7 @@ const MyInfoChildTwo = (props: any) => {
     let myGrids = DUMMY_GRID_ROWS;
     const newGrid = <GridRowData key='8' label='GRID TWO new Item' data='I added this to GRID TWO'/>
     myGrids = [...myGrids, newGrid];
-    const {maxRowsToShow, isDisplayAllGridRows} = props;
+    const {maxRowsToShow, displayAllRows} = props;
 
     const [, dispatch] = useAppStore(); 
 
@@ -51,7 +51,7 @@ const MyInfoChildTwo = (props: any) => {
         <Grid container>
           <ShowMoreGridRows 
                 defaultNumRowsVisible={maxRowsToShow}                     
-                isExpanded={isDisplayAllGridRows} 
+                isExpanded={displayAllRows} 
                 rowsOfData={myGrids}/> 
         </Grid>
 

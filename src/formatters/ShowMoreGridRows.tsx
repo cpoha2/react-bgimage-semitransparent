@@ -46,6 +46,7 @@ const ShowMoreGridRows = (props :any) => {
         
     }
 
+    // probably do not need this button, since it will be inside the grid if used
     const getButtonSection = () => {
         if (doSplitData()) {          
             return <Fragment> 

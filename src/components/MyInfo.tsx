@@ -79,8 +79,12 @@ const MyInfo = (props: any) => {
   const getButtonSection = () => {
     if (globalState.displayButtonChildOneExceeds || globalState.displayButtonChildTwoExceeds) {
       return <Fragment>
-        <Divider style={{width: '100%', height: '3px', backgroundColor: 'purple'}}/>
-        <Button onClick={handleClickShowMore}>{buttonText}</Button>
+        <Divider style={{width: '100%', borderBottom: "4px dashed rgba(255,0,255,0.7)" }}/>
+        <Grid container direction='row'>
+          <Grid item xs={8} />
+          <Grid item xs={4} ><Button onClick={handleClickShowMore}>{buttonText}</Button></Grid>
+        </Grid>
+        
       </Fragment>;
     }
   }
@@ -97,10 +101,10 @@ const MyInfo = (props: any) => {
       <Paper className={classes.paperTop} >
         <Grid container direction='row' >
           <Grid item xs={6} md={6}>
-            <MyInfoChildOne maxRowsToShow={maxRowsToShow}  isDisplayAllGridRows={showAll} />
+            <MyInfoChildOne maxRowsToShow={maxRowsToShow}  displayAllRows={showAll} />
           </Grid>
           <Grid item xs={6} md={6}>
-            <MyInfoChildTwo maxRowsToShow={maxRowsToShow}  isDisplayAllGridRows={showAll} />
+            <MyInfoChildTwo maxRowsToShow={maxRowsToShow}  displayAllRows={showAll} />
           </Grid>
         </Grid>
         {getButtonSection()}
