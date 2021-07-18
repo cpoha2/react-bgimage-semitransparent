@@ -1,10 +1,11 @@
-import React, {Fragment, SyntheticEvent, useState} from 'react';
+import React, {Fragment, SyntheticEvent, useEffect, useState} from 'react';
 import {Divider, Button} from '@material-ui/core';
 
 const ShowMoreGridRows = (props :any) => {
-    const {defaultNumRowsVisible, rowsOfData, moreText, lessText, isExpanded} = props;
-   // const [rowsVisible, setRowsVisible] = useState(defaultNumRowsVisible);
+    const {defaultNumRowsVisible, showButton, rowsOfData, moreText, lessText, isExpanded} = props;
+   
     const [displayAll, setDisplayAll] = useState(isExpanded);
+    const [buttonText, setButtonText] = useState(moreText);
 
     const doSplitData = () => {
         if (defaultNumRowsVisible < rowsOfData.length ) {
@@ -23,7 +24,6 @@ const ShowMoreGridRows = (props :any) => {
         }
         return rowsOfData;
        
-       // return <span>{rows}</span>;
     }
 
     const getHiddenRecords = () => {
@@ -37,33 +37,40 @@ const ShowMoreGridRows = (props :any) => {
 
     const handleClick = (e: SyntheticEvent) => {
         console.log("You clicked show more or show less, no idea which");
-        //getAlwaysVisibleRecords();
-        //getHiddenRecords();
+        if (buttonText === moreText) {
+            setButtonText(lessText);
+        } else {
+            setButtonText(moreText);
+        }
         setDisplayAll (!displayAll);
         
     }
 
     const getButtonSection = () => {
-        if (doSplitData()) {
-            
-            if (displayAll ) {
-              return <Fragment><Divider style={{width: '100%', height: '3px', backgroundColor: 'green'}}/> <Button onClick={handleClick}>{lessText}</Button></Fragment>;
-            }
-            return <Fragment> <Divider style={{width: '100%', height: '3px', backgroundColor: 'red'}}/> <Button onClick={handleClick}>{moreText}</Button></Fragment>;
+        if (doSplitData()) {          
+            return <Fragment> 
+                <Divider style={{width: '100%', height: '3px', backgroundColor: 'red'}}/> 
+                <Button onClick={handleClick}>{buttonText}</Button>
+            </Fragment>;
         }
     }
 
+    useEffect(() => {
+      if (isExpanded) {
+        setButtonText(lessText);
+        setDisplayAll(true);
+      } else {
+        setButtonText(moreText);
+        setDisplayAll(false);
+      }
+      
+      console.log('ShowMoreGridRows: use effect called');
+    }, [isExpanded, lessText, moreText]);
+
     return <Fragment>
         {getAlwaysVisibleRecords()}
-
-        {(displayAll ) &&  getHiddenRecords()} 
-        
-        
-        {getButtonSection() }
-
-        
-
-
+        {displayAll && getHiddenRecords()} 
+        {showButton && getButtonSection()}
     </Fragment>;
 }
 
