@@ -1,6 +1,6 @@
 import React from 'react';
-import { Accordion, AccordionSummary, AccordionDetails, Grid, Typography } from '@material-ui/core';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { Paper } from '@material-ui/core';
+
 import { makeStyles } from '@material-ui/core/styles';
 
 import {  Draggable } from "react-beautiful-dnd";
@@ -60,43 +60,14 @@ const CustomAccordion = ( props : any ) => {
     return (
         <Draggable key={person.id} draggableId={person.id} index={index}>
         {(provided, snapshot) => (
-         <Accordion  
-            ref={provided.innerRef}
+            <Paper  ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}>
-            <AccordionSummary
-                
-                expandIcon={<ExpandMoreIcon/>}
-                aria-controls={`panel${person.key}-content`}
-                id={`panel${person.key}-header`}
-                className={classes.headerPaper}
-            >
-                <Typography className={classes.headerTypography}>{props.name}</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-                 {false && 
-                     <Grid container direction='row' justifyContent='flex-end' alignItems='flex-start'>
-                         <Grid item md={6}>NAME: </Grid>
-                         <Grid item md={6}>{person.name}</Grid>
-
-                         <Grid item md={6}>AGE: </Grid>
-                         <Grid item md={6}>{person.age}</Grid>
-
-                         <Grid item md={6}>FAVORITE FOOD: </Grid>
-                         <Grid item md={6}>{person.favoriteFood}</Grid>
-
-                         <Grid item md={6}>PRECEDENCE: </Grid>
-                         <Grid item md={6}>{person.precedence}</Grid>
-
-                     </Grid>
-                 
-                }
                 NAME: {person.name}<br/>
                 AGE: {person.age}<br/>
                 FAVORITE FOOD: {person.favoriteFood}<br/>
                 PRECEDENCE: {person.precedence}<br/>
-            </AccordionDetails>
-        </Accordion>
+            </Paper>
         )}
         </Draggable>
     );

@@ -3,11 +3,8 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import {  Paper } from '@material-ui/core';
 import Image from '../../assets/pf_bg4.jpg';
 import CustomAccordion from './CustomAccordion';
-
-
-
-import RootRef from "@material-ui/core/RootRef";
-
+import CustomSimpleCard from './CustomSimpleCard';
+//import RootRef from "@material-ui/core/RootRef";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
 
@@ -69,6 +66,7 @@ const myItems = [
 ]
 
 const reorder = (list : any[], startIndex : number, endIndex : number) => {
+    console.log("Attempt reorder now");
     const result = Array.from(list);
     const [removed] = result.splice(startIndex, 1);
     result.splice(endIndex, 0, removed);
@@ -83,6 +81,14 @@ const MyAccordionTest = (props : any ) => {
 
   const [peopleList, setPeopleList] = useState(myItems);
 
+  const onDragUpdate = (result : any) => {
+      console.log("drag update");
+  }
+
+  const onDragStart = (result : any) => {
+      console.log("drag start")
+  }
+
   const onDragEnd = (result : any) => {
     console.log("result:", result);
 
@@ -90,6 +96,7 @@ const MyAccordionTest = (props : any ) => {
         if (!result.destination) {
             return;
         }
+
 
         const myItems = reorder(
             peopleList,
@@ -150,7 +157,7 @@ const MyAccordionTest = (props : any ) => {
         <Paper className={classes.paper}>
             <h1>Accordions!</h1>
             <Paper className={classes.paperTop} >
-            <DragDropContext onDragEnd={onDragEnd}>
+            <DragDropContext onDragEnd={onDragEnd} onDragUpdate={onDragUpdate} onDragStart={onDragStart}>
                 <Droppable droppableId="droppable">
                     {(provided, snapshot) => (
                         
@@ -161,8 +168,8 @@ const MyAccordionTest = (props : any ) => {
                             {peopleList.map((person, index) => (
 
                     
-                                <CustomAccordion 
-                                    ref={provided.innerRef}
+                                <CustomSimpleCard 
+                                   
                                     index={index}
                                     key={Math.random()}
                                     name={person.name}
