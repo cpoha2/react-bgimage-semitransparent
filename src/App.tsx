@@ -5,6 +5,7 @@ import { Grid, Paper } from '@material-ui/core';
 import MyInfo from './components/MyInfo';
 import SearchStuff from './components/SearchStuff';
 import { AppStore } from './store/AppStore';
+import MyAccordionTest from './components/accordions/MyAccordionTest';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -39,6 +40,9 @@ function App() {
           </Grid>
           <Grid item xs={12}>
             <MyInfo />
+          </Grid>
+          <Grid item xs={12}>
+            <MyAccordionTest/>
           </Grid>
           <Grid item xs={12}>
             <Paper className={classes.paperHeaderFooter}>FOOTER</Paper>
