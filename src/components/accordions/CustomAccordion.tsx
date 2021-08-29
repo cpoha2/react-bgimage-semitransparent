@@ -60,10 +60,11 @@ const CustomAccordion = ( props : any ) => {
     return (
         <Draggable key={person.id} draggableId={person.id} index={index}>
         {(provided, snapshot) => (
-         <Accordion  
-            ref={provided.innerRef}
+           
+         <Accordion ref={provided.innerRef}
             {...provided.draggableProps}
-            {...provided.dragHandleProps}>
+            {...provided.dragHandleProps} > 
+            
             <AccordionSummary
                 
                 expandIcon={<ExpandMoreIcon/>}
@@ -76,17 +77,17 @@ const CustomAccordion = ( props : any ) => {
             <AccordionDetails>
                  {true && 
                      <Grid container direction='row' justifyContent='flex-end' alignItems='flex-start'>
-                         <Grid item md={6}>NAME: </Grid>
-                         <Grid item md={6}>{person.name}</Grid>
+                         <Grid item sm={6} md={3}>NAME: </Grid>
+                         <Grid item sm={6} md={3}>{person.name}</Grid>
 
-                         <Grid item md={6}>AGE: </Grid>
-                         <Grid item md={6}>{person.age}</Grid>
+                         <Grid item sm={6} md={3}>AGE: </Grid>
+                         <Grid item sm={6} md={3}>{person.age}</Grid>
 
-                         <Grid item md={6}>FAVORITE FOOD: </Grid>
-                         <Grid item md={6}>{person.favoriteFood}</Grid>
+                         <Grid item sm={6} md={3}>FAVORITE FOOD: </Grid>
+                         <Grid item sm={6} md={3}>{person.favoriteFood}</Grid>
 
-                         <Grid item md={6}>PRECEDENCE: </Grid>
-                         <Grid item md={6}>{person.precedence}</Grid>
+                         <Grid item sm={6} md={3}>PRECEDENCE: </Grid>
+                         <Grid item sm={6} md={3}>{person.precedence}</Grid>
 
                      </Grid>
                  
@@ -98,6 +99,7 @@ const CustomAccordion = ( props : any ) => {
                 PRECEDENCE: {person.precedence}<br/></>}
             </AccordionDetails>
         </Accordion>
+        
         )}
         </Draggable>
     );
