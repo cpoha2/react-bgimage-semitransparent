@@ -159,7 +159,7 @@ const MyAccordionTest = (props : any ) => {
   return ( 
     <div className={classes.behindPaper}>
         <Paper className={classes.paper}>
-            <h1>Accordions!</h1>
+            <h1>Drag and Drop Accordions!</h1>
             <Paper className={classes.paperTop} >
             <DragDropContext onBeforeCapture={onBeforeCapture} onDragEnd={onDragEnd} onDragUpdate={onDragUpdate} onDragStart={onDragStart}>
                 <Droppable droppableId="droppable">
