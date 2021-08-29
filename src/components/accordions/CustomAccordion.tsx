@@ -74,7 +74,7 @@ const CustomAccordion = ( props : any ) => {
                 <Typography className={classes.headerTypography}>{props.name}</Typography>
             </AccordionSummary>
             <AccordionDetails>
-                 {false && 
+                 {true && 
                      <Grid container direction='row' justifyContent='flex-end' alignItems='flex-start'>
                          <Grid item md={6}>NAME: </Grid>
                          <Grid item md={6}>{person.name}</Grid>
@@ -91,10 +91,11 @@ const CustomAccordion = ( props : any ) => {
                      </Grid>
                  
                 }
+                { false && <>
                 NAME: {person.name}<br/>
                 AGE: {person.age}<br/>
                 FAVORITE FOOD: {person.favoriteFood}<br/>
-                PRECEDENCE: {person.precedence}<br/>
+                PRECEDENCE: {person.precedence}<br/></>}
             </AccordionDetails>
         </Accordion>
         )}

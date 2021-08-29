@@ -89,6 +89,10 @@ const MyAccordionTest = (props : any ) => {
       console.log("drag start")
   }
 
+  const onBeforeCapture = (result : any) => {
+      console.log("on before capture");
+  }
+
   const onDragEnd = (result : any) => {
     console.log("result:", result);
 
@@ -157,7 +161,7 @@ const MyAccordionTest = (props : any ) => {
         <Paper className={classes.paper}>
             <h1>Accordions!</h1>
             <Paper className={classes.paperTop} >
-            <DragDropContext onDragEnd={onDragEnd} onDragUpdate={onDragUpdate} onDragStart={onDragStart}>
+            <DragDropContext onBeforeCapture={onBeforeCapture} onDragEnd={onDragEnd} onDragUpdate={onDragUpdate} onDragStart={onDragStart}>
                 <Droppable droppableId="droppable">
                     {(provided, snapshot) => (
                         
@@ -168,10 +172,10 @@ const MyAccordionTest = (props : any ) => {
                             {peopleList.map((person, index) => (
 
                     
-                                <CustomSimpleCard 
+                                <CustomAccordion 
                                    
                                     index={index}
-                                    key={Math.random()}
+                                    key={index}
                                     name={person.name}
                                     age={person.age}
                                     favoriteFood={person.favoriteFood}
