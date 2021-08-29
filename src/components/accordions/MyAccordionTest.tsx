@@ -5,18 +5,10 @@ import Image from '../../assets/pf_bg4.jpg';
 import CustomAccordion from './CustomAccordion';
 
 
-import {
-    List,
-    ListItem,
-    ListItemText,
-    ListItemIcon,
-    IconButton,
-    ListItemSecondaryAction
-} from "@material-ui/core";
+
 import RootRef from "@material-ui/core/RootRef";
-import InboxIcon from "@material-ui/icons/Inbox";
-import EditIcon from "@material-ui/icons/Edit";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -161,12 +153,16 @@ const MyAccordionTest = (props : any ) => {
             <DragDropContext onDragEnd={onDragEnd}>
                 <Droppable droppableId="droppable">
                     {(provided, snapshot) => (
-                         <RootRef rootRef={provided.innerRef}>
-               
-               {peopleList.map((person, index) => (
+                        
+                        <div
+                            {...provided.droppableProps}
+                            ref={provided.innerRef}
+                        >
+                            {peopleList.map((person, index) => (
 
                     
                                 <CustomAccordion 
+                                    ref={provided.innerRef}
                                     index={index}
                                     key={Math.random()}
                                     name={person.name}
@@ -181,7 +177,8 @@ const MyAccordionTest = (props : any ) => {
                 ))} 
                 
                 {provided.placeholder}
-                </RootRef>
+                </div>
+                
                 )}
                 </Droppable>
                 </DragDropContext>

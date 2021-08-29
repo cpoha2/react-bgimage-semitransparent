@@ -60,19 +60,20 @@ const CustomAccordion = ( props : any ) => {
     return (
         <Draggable key={person.id} draggableId={person.id} index={index}>
         {(provided, snapshot) => (
-         <Accordion  ref={provided.innerRef}
-         {...provided.draggableProps}
-         {...provided.dragHandleProps}>
-             <AccordionSummary
+         <Accordion  
+            ref={provided.innerRef}
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}>
+            <AccordionSummary
                 
                 expandIcon={<ExpandMoreIcon/>}
                 aria-controls={`panel${person.key}-content`}
                 id={`panel${person.key}-header`}
                 className={classes.headerPaper}
-             >
+            >
                 <Typography className={classes.headerTypography}>{props.name}</Typography>
-             </AccordionSummary>
-             <AccordionDetails>
+            </AccordionSummary>
+            <AccordionDetails>
                  
                      <Grid container direction='row' justifyContent='flex-end' alignItems='flex-start'>
                          <Grid item md={6}>NAME: </Grid>
@@ -90,9 +91,10 @@ const CustomAccordion = ( props : any ) => {
                      </Grid>
                  
                  
-             </AccordionDetails>
-         </Accordion>)}
-         </Draggable>
+            </AccordionDetails>
+        </Accordion>
+        )}
+        </Draggable>
     );
 }
 
