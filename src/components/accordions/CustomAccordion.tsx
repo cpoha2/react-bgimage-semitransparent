@@ -3,8 +3,11 @@ import { Accordion, AccordionSummary, AccordionDetails, Grid, Typography } from 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { makeStyles } from '@material-ui/core/styles';
 
-import {  Draggable } from "react-beautiful-dnd";
+import {  Draggable, DraggableProvided, DraggableStateSnapshot } from "react-beautiful-dnd";
 
+/**
+  DraggableLocation,
+   */
 
 
 const useStyles = makeStyles((theme) => ({
@@ -21,45 +24,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const CustomAccordion = ( props : any ) => {
-    const { person, index } = props;
+    const { person, index, key } = props;
     const classes = useStyles();
-/**
- * 
- * <Draggable draggableId={this.props.task.id} index={this.props.index}>
-                {provided => (
-                    <Container
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        innerRef={provided.innerRef}
-                    >
-                        {this.props.task.content}
-                    </Container>
-                )}
-            </Draggable>
- */
-/**
- * 
- * <Draggable key={person.id} draggableId={person.id} index={index}>
-                        {(provided, snapshot) => 
-                                <CustomAccordion 
-                                    ref={provided.innerRef}
-                                    {...provided.draggableProps}
-                                    {...provided.dragHandleProps}
-                                    key={Math.random()}
-                                    name={person.name}
-                                    age={person.age}
-                                    favoriteFood={person.favoriteFood}
-                                    person={person}
-                                    precedence={person.precedence}
-                            />
-                        }
-                  
-                    </Draggable>
-
- */
     return (
         <Draggable key={person.id} draggableId={person.id} index={index}>
-        {(provided, snapshot) => (
+        {(provided : DraggableProvided, snapshot : DraggableStateSnapshot) => (
            
          <Accordion ref={provided.innerRef}
             {...provided.draggableProps}
@@ -72,7 +41,7 @@ const CustomAccordion = ( props : any ) => {
                 id={`panel${person.key}-header`}
                 className={classes.headerPaper}
             >
-                <Typography className={classes.headerTypography}>{props.name}</Typography>
+                <Typography className={classes.headerTypography}>{person.name}</Typography>
             </AccordionSummary>
             <AccordionDetails>
                  {true && 
@@ -88,6 +57,15 @@ const CustomAccordion = ( props : any ) => {
 
                          <Grid item sm={6} md={3}>PRECEDENCE: </Grid>
                          <Grid item sm={6} md={3}>{person.precedence}</Grid>
+
+                         <Grid item sm={6} md={3}>INDEX: </Grid>
+                         <Grid item sm={6} md={3}>{index}</Grid>
+
+                         <Grid item sm={6} md={3}>KEY: </Grid>
+                         <Grid item sm={6} md={3}>{key}</Grid>
+
+                         <Grid item sm={6} md={3}>PERSON ID: </Grid>
+                         <Grid item sm={6} md={3}>{person.id}</Grid>
 
                      </Grid>
                  

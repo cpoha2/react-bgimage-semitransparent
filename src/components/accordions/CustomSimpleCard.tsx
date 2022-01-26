@@ -23,40 +23,6 @@ const useStyles = makeStyles((theme) => ({
 const CustomAccordion = ( props : any ) => {
     const { person, index } = props;
     const classes = useStyles();
-/**
- * 
- * <Draggable draggableId={this.props.task.id} index={this.props.index}>
-                {provided => (
-                    <Container
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        innerRef={provided.innerRef}
-                    >
-                        {this.props.task.content}
-                    </Container>
-                )}
-            </Draggable>
- */
-/**
- * 
- * <Draggable key={person.id} draggableId={person.id} index={index}>
-                        {(provided, snapshot) => 
-                                <CustomAccordion 
-                                    ref={provided.innerRef}
-                                    {...provided.draggableProps}
-                                    {...provided.dragHandleProps}
-                                    key={Math.random()}
-                                    name={person.name}
-                                    age={person.age}
-                                    favoriteFood={person.favoriteFood}
-                                    person={person}
-                                    precedence={person.precedence}
-                            />
-                        }
-                  
-                    </Draggable>
-
- */
     return (
         <Draggable key={person.id} draggableId={person.id} index={index}>
         {(provided, snapshot) => (

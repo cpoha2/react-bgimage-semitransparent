@@ -5,7 +5,7 @@ import Image from '../../assets/pf_bg4.jpg';
 import CustomAccordion from './CustomAccordion';
 import CustomSimpleCard from './CustomSimpleCard';
 //import RootRef from "@material-ui/core/RootRef";
-import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import { DragDropContext, Droppable, DropResult, DroppableProvided, DroppableStateSnapshot } from "react-beautiful-dnd";
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -36,33 +36,35 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const myItems = [
     {
-        name: 'John Doe', 
-        id: '1',
-        age: 23, 
-        favoriteFood: 'Chocolate',
+        name: 'Anna Somebody',
+        id: '111',
+        age: 34,
+        favoriteFood: 'Jelly Beans',
         precedence: 1,
-    }, 
+    },
+
     {
         name: 'Bob Smith',
-        id: '2',
+        id: '222',
         age: 55,
         favoriteFood: 'Blueberries',
         precedence: 2,
     },
     {
-        name: 'Jenny Thoone',
-        id: '3',
+        name: 'Carol Thoone',
+        id: '333',
         age: 38,
         favoriteFood: 'Escargot',
         precedence: 3,
     },
     {
-        name: 'Anna Somebody',
-        id: '4',
-        age: 34,
-        favoriteFood: 'Jelly Beans',
+        name: 'Darren Doe', 
+        id: '444',
+        age: 23, 
+        favoriteFood: 'Chocolate',
         precedence: 4,
-    }
+    }, 
+
 ]
 
 const reorder = (list : any[], startIndex : number, endIndex : number) => {
@@ -76,8 +78,6 @@ const reorder = (list : any[], startIndex : number, endIndex : number) => {
 
 const MyAccordionTest = (props : any ) => {
   const classes = useStyles();
-
- // const peopleList = myItems;
 
   const [peopleList, setPeopleList] = useState(myItems);
 
@@ -93,7 +93,7 @@ const MyAccordionTest = (props : any ) => {
       console.log("on before capture");
   }
 
-  const onDragEnd = (result : any) => {
+  const onDragEnd = (result : DropResult) => {
     console.log("result:", result);
 
         // dropped outside the list
@@ -112,49 +112,6 @@ const MyAccordionTest = (props : any ) => {
 
   }
   
-/**
- *    <DragDropContext onDragEnd={onDragEnd}>
-                <Droppable droppableId="droppable">
-                    {(provided, snapshot) => (
-                        <RootRef rootRef={provided.innerRef}>
-                            <List style={getListStyle(snapshot.isDraggingOver)}>
-                                {items.map((item, index) => (
-                                    <Draggable key={item.id} draggableId={item.id} index={index}>
-                                        {(provided, snapshot) => (
-                                            <ListItem
-                                                ContainerComponent="li"
-                                                ContainerProps={{ ref: provided.innerRef }}
-                                                {...provided.draggableProps}
-                                                {...provided.dragHandleProps}
-                                                style={getItemStyle(
-                                                    snapshot.isDragging,
-                                                    provided.draggableProps.style
-                                                )}
-                                            >
-                                                <ListItemIcon>
-                                                    <InboxIcon />
-                                                </ListItemIcon>
-                                                <ListItemText
-                                                    primary={item.primary}
-                                                    secondary={item.secondary}
-                                                />
-                                                <ListItemSecondaryAction>
-                                                    <IconButton>
-                                                        <EditIcon />
-                                                    </IconButton>
-                                                </ListItemSecondaryAction>
-                                            </ListItem>
-                                        )}
-                                    </Draggable>
-                                ))}
-                                {provided.placeholder}
-                            </List>
-                        </RootRef>
-                    )}
-                </Droppable>
-            </DragDropContext>
-
- */
 
   return ( 
     <div className={classes.behindPaper}>
@@ -163,24 +120,18 @@ const MyAccordionTest = (props : any ) => {
             <Paper className={classes.paperTop} >
             <DragDropContext onBeforeCapture={onBeforeCapture} onDragEnd={onDragEnd} onDragUpdate={onDragUpdate} onDragStart={onDragStart}>
                 <Droppable droppableId="droppable">
-                    {(provided, snapshot) => (
+                    {(provided : DroppableProvided, snapshot : DroppableStateSnapshot) => (
                         
                         <div
                             {...provided.droppableProps}
                             ref={provided.innerRef}
                         >
                             {peopleList.map((person, index) => (
-
                     
-                                <CustomAccordion 
-                                   
+                                <CustomAccordion  
                                     index={index}
                                     key={index}
-                                    name={person.name}
-                                    age={person.age}
-                                    favoriteFood={person.favoriteFood}
-                                    person={person}
-                                    precedence={person.precedence}
+                                    person={person}  
                             />
                         
                   
